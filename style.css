@@ -130,3 +130,37 @@ body { background-color: #0b0e14; color: #fff; height: 100vh; display: flex; fle
 .coin-flip-wrapper { display: flex; flex-direction: column; align-items: center; gap: 40px; }
 .coin-anim { width: 150px; height: 150px; border-radius: 50%; background: radial-gradient(circle at 30% 30%, #fbbf24, #b45309); box-shadow: 0 0 40px rgba(251, 191, 36, 0.5), inset 0 -10px 20px rgba(0,0,0,0.5); display: flex; justify-content: center; align-items: center; font-size: 80px; font-weight: 900; color: #fff; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); transition: transform 0.1s ease; border: 4px solid #fcd34d; }
 .result-message { font-size: 42px; font-weight: 900; color: #fff; opacity: 0; transform: translateY(20px); transition: all 0.5s ease; text-align: center; }
+
+/* --- ИКОНКИ ОРУЖИЯ В СТРОКЕ --- */
+.match-items-preview { display: flex; align-items: center; gap: 5px; margin-right: 10px; }
+.match-item-icon { width: 35px; height: 35px; object-fit: contain; background: linear-gradient(180deg, #2d1b4e 0%, #1a1f2b 100%); border: 1px solid #5b21b6; border-radius: 6px; padding: 2px; }
+.watch-btn { background-color: #1f2433; color: #fff; font-weight: 700; font-size: 12px; padding: 6px 12px; border: 1px solid #374151; border-radius: 6px; cursor: pointer; transition: 0.2s; }
+.watch-btn:hover { background-color: #374151; }
+/* --- НОВЫЕ 3D МОНЕТЫ С КАРТИНКАМИ --- */
+.coin-blue, .coin-red {
+  background: transparent !important; /* Убираем старый градиент */
+  border: none !important; /* Убираем старую рамку */
+  box-shadow: none !important; /* Убираем тень, так как она есть на картинке */
+}
+
+.coin-blue::before, .coin-red::before {
+  display: none !important; /* Убираем пунктирный круг */
+}
+
+/* Синяя монета (T) */
+.coin-blue {
+  background-image: url('https://s6.iimage.su/s/01/ggS7Z71xoQ9CJWoM5uwm4B02CbhOdtBtnizhLzf0Y.webp') !important;
+  background-size: cover !important;
+  background-position: center !important;
+  color: transparent !important; /* Скрываем текст "T", так как он есть на картинке */
+  text-shadow: none !important;
+}
+
+/* Красная монета (H) */
+.coin-red {
+  background-image: url('https://s6.iimage.su/s/01/gglELDLxoalRBvWz2R13TAzD8U9DSEpWojNQM6VZP.webp') !important;
+  background-size: cover !important;
+  background-position: center !important;
+  color: transparent !important; /* Скрываем текст "H" */
+  text-shadow: none !important;
+}

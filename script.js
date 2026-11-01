@@ -149,7 +149,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   renderInventory();
 
-  // === 5. АНИМАЦИЯ МОНЕТКИ (ВЫНЕСЕНА НАВЕРХ ДЛЯ ДОСТУПА) ===
+  // === 5. АНИМАЦИЯ МОНЕТКИ ===
   function startCoinFlipAnimation(matchKey, botChoice, myItemsStaked, botItemsStaked) {
     const animOverlay = document.createElement('div');
     animOverlay.className = 'anim-overlay';
@@ -258,7 +258,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     modal.classList.remove('active');
 
-    // Если это JOIN
     if (window.targetMatchKey) {
       const matchRef = db.ref('matches/' + window.targetMatchKey);
       matchRef.once('value').then((snapshot) => {
@@ -286,7 +285,6 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // Если это CREATE
     const newMatchRef = db.ref('matches').push();
     newMatchRef.set({
       creator: currentUser,
@@ -303,7 +301,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // === 8. ОТОБРАЖЕНИЕ МАТЧЕЙ ===
+  // === 8. ОТОБРАЖЕНИЕ МАТЧЕЙ (С WATCH) ===
   function updateMatchesDisplay() {
     matchPanel.innerHTML = '';
     db.ref('matches').on('value', (snapshot) => {
@@ -321,8 +319,22 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!showAllMatches && match.creator !== currentUser) return;
         hasMatches = true;
 
-        const itemRarity = (match.itemsRarity && match.itemsRarity[0]) ? match.itemsRarity[0] : "Godly";
+        // Превью предметов (первые 2)
+        let itemsPreview = '';
+        const maxShow = 2;
+        const matchItems = match.items || [];
         
+        matchItems.slice(0, maxShow).forEach((itemName, index) => {
+          const rarity = (match.itemsRarity && match.itemsRarity[index]) ? match.itemsRarity[index] : "Godly";
+          itemsPreview += `<img src="${getItemImage(itemName, rarity)}" class="match-item-icon" title="${itemName}" onerror="this.src='https://i.postimg.cc/yx5hfgTT/no-Filter-(1).webp'">`;
+        });
+
+        // Кнопка WATCH, если предметов больше 2
+        let watchBtnHtml = '';
+        if (matchItems.length > maxShow) {
+          watchBtnHtml = `<button class="watch-btn" onclick="openWatchModal('${key}')">+${matchItems.length - maxShow} WATCH</button>`;
+        }
+
         const matchHTML = `
           <div class="match-row">
             <div class="match-left">
@@ -337,16 +349,16 @@ document.addEventListener("DOMContentLoaded", () => {
               </div>
             </div>
 
-            <div class="match-center">
-              <div class="match-skin-box">
-                <img src="${getItemImage(match.items[0], itemRarity)}" onerror="this.src='https://i.postimg.cc/yx5hfgTT/no-Filter-(1).webp'" alt="skin">
+            <div class="match-center" style="flex-direction: column; gap: 5px;">
+              <div class="match-items-preview">
+                ${itemsPreview}
+                ${watchBtnHtml}
               </div>
             </div>
 
             <div class="match-right">
               <div class="match-price">
                 <span style="color: #4ade80; font-size: 20px; font-weight: 800;">${match.totalPrice} 🪙</span>
-                <span style="color: #6b7280; font-size: 12px;">15 - 20</span>
               </div>
               
               ${match.creator !== currentUser 
@@ -367,6 +379,32 @@ document.addEventListener("DOMContentLoaded", () => {
 
   updateMatchesDisplay();
 
+  // === 9. ПРОСМОТР ВСЕХ ПРЕДМЕТОВ (WATCH) ===
+  window.openWatchModal = (matchKey) => {
+    db.ref('matches/' + matchKey).once('value').then((snapshot) => {
+      const match = snapshot.val();
+      if (!match) return;
+      
+      const watchGrid = document.getElementById('watchItemsGrid');
+      document.getElementById('watchTitle').innerText = `${match.creator}'s Items`;
+      watchGrid.innerHTML = '';
+
+      match.items.forEach((itemName, index) => {
+        const rarity = (match.itemsRarity && match.itemsRarity[index]) ? match.itemsRarity[index] : "Godly";
+        const card = document.createElement('div');
+        card.className = 'item-card';
+        card.innerHTML = `
+          <img src="${getItemImage(itemName, rarity)}" class="item-img" onerror="this.src='https://i.postimg.cc/yx5hfgTT/no-Filter-(1).webp'">
+          <div class="item-name">${itemName}</div>
+          <div class="item-rarity ${rarity.toLowerCase()}">${rarity}</div>
+        `;
+        watchGrid.appendChild(card);
+      });
+
+      document.getElementById('watchModal').classList.add('active');
+    });
+  };
+
   window.openJoinModal = (matchKey) => {
     window.targetMatchKey = matchKey;
     selectedItems = [];
@@ -381,7 +419,7 @@ document.addEventListener("DOMContentLoaded", () => {
     db.ref('matches/' + key).remove();
   };
 
-  // === 9. ЧАТ ===
+  // === 10. ЧАТ ===
   const chatInput = document.getElementById('chatInput');
   const chatSendBtn = document.getElementById('chatSendBtn');
   const chatBody = document.getElementById('chatBody');
