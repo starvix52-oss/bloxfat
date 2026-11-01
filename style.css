@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&display=swap');
+
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Outfit', sans-serif !important; }
+
+body { background-color: #0b0e14; color: #fff; height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
+
+/* --- ВЕРХНЯЯ ПАНЕЛЬ --- */
+.topbar { display: flex; justify-content: space-between; align-items: center; background-color: #131722; padding: 10px 24px; height: 64px; border-bottom: 1px solid #1f2636; flex-shrink: 0; }
+.logo { display: flex; align-items: center; gap: 10px; }
+.logo-img { width: 32px; height: 32px; object-fit: contain; border-radius: 6px; }
+.logo-text { font-weight: 900; font-size: 20px; letter-spacing: 1px; color: #fff; }
+.topbar-center { display: flex; align-items: center; gap: 24px; }
+.game-selector { background-color: #1f2433; padding: 8px 14px; border-radius: 8px; font-weight: 700; font-size: 13px; display: flex; align-items: center; gap: 8px; cursor: pointer; color: #d1d5db; }
+.icons { display: flex; gap: 20px; color: #6b7280; font-size: 16px; cursor: pointer; }
+.topbar-right { display: flex; align-items: center; gap: 16px; }
+.balance-pill { background-color: #1f2433; padding: 8px 14px; border-radius: 20px; font-weight: 700; font-size: 14px; display: flex; align-items: center; gap: 6px; color: #fbbf24; }
+.gift-btn { background-color: #4ade80; color: #000; width: 38px; height: 38px; border-radius: 8px; display: flex; justify-content: center; align-items: center; cursor: pointer; font-size: 18px; }
+.user-profile { display: flex; align-items: center; gap: 10px; background-color: #1f2433; padding: 4px 12px 4px 4px; border-radius: 8px; cursor: pointer; }
+.avatar-img { width: 32px; height: 32px; border-radius: 6px; background-color: #333; }
+.username { font-weight: 700; font-size: 14px; }
+
+/* --- ОСНОВНОЙ МАКЕТ --- */
+.main-layout { display: flex; flex: 1; height: calc(100vh - 64px); }
+.game-area { flex: 1; padding: 24px; display: flex; flex-direction: column; gap: 24px; }
+.game-header { display: flex; align-items: center; gap: 24px; }
+.btn-create { background-color: #4ade80; color: #0b0e14; font-weight: 800; font-size: 14px; padding: 12px 28px; border: none; border-radius: 8px; cursor: pointer; transition: 0.2s; }
+.btn-create:hover { background-color: #22c55e; }
+.filters { display: flex; background-color: #131722; border-radius: 8px; padding: 4px; gap: 4px; }
+.filter { padding: 6px 16px; border-radius: 6px; font-weight: 700; font-size: 14px; cursor: pointer; color: #6b7280; display: flex; align-items: center; gap: 8px; }
+.filter.active { background-color: #1f2433; color: #fff; }
+.my-matches { margin-left: auto; font-weight: 800; font-size: 13px; color: #4ade80; cursor: pointer; display: flex; align-items: center; gap: 8px; letter-spacing: 0.5px; transition: color 0.2s; }
+.match-panel { background-color: #1a1f2b; border-radius: 12px; padding: 24px; display: flex; flex-direction: column; gap: 15px; width: 100%; max-width: 800px; min-height: 100px; }
+
+/* --- 3D МОНЕТЫ --- */
+.coin-3d { border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: 900; color: white; position: relative; box-shadow: inset 0 4px 6px rgba(255, 255, 255, 0.4), inset 0 -4px 6px rgba(0, 0, 0, 0.5), 0 4px 10px rgba(0, 0, 0, 0.5); text-shadow: 1px 1px 2px rgba(0,0,0,0.6); }
+.coin-3d::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; border-radius: 50%; border: 2px dashed rgba(255,255,255,0.2); margin: 3px; }
+.coin-blue { background: radial-gradient(circle at 50% 20%, #60a5fa, #1e3a8a 80%); border: 2px solid #93c5fd; }
+.coin-red { background: radial-gradient(circle at 50% 20%, #f87171, #991b1b 80%); border: 2px solid #fca5a5; }
+.coin-green { background: radial-gradient(circle at 50% 20%, #4ade80, #166534 80%); border: 2px solid #86efac; }
+.coin-3d:not(.large) { width: 24px; height: 24px; font-size: 12px; }
+.coin-3d.large { width: 54px; height: 54px; font-size: 24px; }
+.coin-3d.small { width: 28px; height: 28px; font-size: 12px; }
+
+/* --- ПРАВАЯ ЧАСТЬ (Чат) --- */
+.sidebar { width: 340px; background-color: #0f131a; border-left: 1px solid #1f2636; display: flex; flex-direction: column; flex-shrink: 0; }
+.chat-header { padding: 20px 24px; border-bottom: 1px solid #1f2636; font-weight: 800; font-size: 14px; display: flex; justify-content: space-between; align-items: center; }
+.chat-controls { display: flex; align-items: center; gap: 15px; color: #6b7280; }
+.online-dot { color: #4ade80; font-size: 12px; font-weight: bold; }
+.chat-body { flex: 1; padding: 20px; overflow-y: auto; }
+.chat-input-area { padding: 15px; border-top: 1px solid #1f2636; display: flex; gap: 12px; background-color: #0b0e14; }
+.chat-input-area input { flex: 1; background-color: #1f2433; border: none; border-radius: 8px; padding: 14px; color: #fff; outline: none; font-size: 14px; }
+.chat-send { background-color: #4ade80; color: #0b0e14; border: none; width: 48px; height: 48px; border-radius: 8px; cursor: pointer; display: flex; justify-content: center; align-items: center; font-size: 20px; transition: background-color 0.2s; }
+.chat-send:hover { background-color: #22c55e; }
+
+/* --- МОДАЛЬНОЕ ОКНО --- */
+.modal-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: rgba(0, 0, 0, 0.6); backdrop-filter: blur(4px); display: flex; justify-content: center; align-items: center; z-index: 1000; opacity: 0; pointer-events: none; transition: opacity 0.2s ease; }
+.modal-overlay.active { opacity: 1; pointer-events: auto; }
+.modal-content { background-color: #131722; width: 800px; height: 600px; border-radius: 12px; display: flex; flex-direction: column; box-shadow: 0 10px 30px rgba(0,0,0,0.5); transform: translateY(20px); transition: transform 0.2s ease; }
+.modal-overlay.active .modal-content { transform: translateY(0); }
+.modal-header { display: flex; justify-content: space-between; align-items: center; padding: 20px 24px; }
+.modal-header h2 { font-size: 16px; font-weight: 800; flex: 1; text-align: center; padding-left: 20px; }
+.close-btn { background: none; border: none; color: #6b7280; font-size: 28px; cursor: pointer; line-height: 1; transition: color 0.2s; }
+.close-btn:hover { color: #fff; }
+.modal-body { flex: 1; border-top: 1px solid #1f2636; border-bottom: 1px solid #1f2636; overflow-y: auto; padding: 20px; }
+.modal-footer { padding: 20px 24px; display: flex; justify-content: space-between; align-items: center; }
+.selected-info { background-color: #1f2433; padding: 8px 16px; border-radius: 8px; font-size: 13px; color: #6b7280; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+.modal-actions { display: flex; align-items: center; gap: 12px; }
+.btn-modal-create { background-color: #4ade80; color: #0b0e14; font-weight: 800; font-size: 14px; padding: 12px 24px; border: none; border-radius: 8px; cursor: pointer; transition: 0.2s; }
+.btn-modal-create:hover { background-color: #22c55e; }
+
+/* --- СООБЩЕНИЯ ЧАТА --- */
+.chat-message { display: flex; gap: 12px; margin-bottom: 18px; align-items: flex-start; padding: 0 10px; }
+.msg-avatar { width: 28px; height: 28px; border-radius: 6px; object-fit: cover; flex-shrink: 0; margin-top: 2px; }
+.msg-content { display: flex; flex-direction: column; gap: 2px; flex: 1; }
+.msg-header { display: flex; align-items: baseline; gap: 6px; font-size: 13px; }
+.msg-user { font-weight: 800; color: #d1d5db; text-shadow: 0 1px 2px rgba(0,0,0,0.5); }
+.msg-time { color: #4b5563; font-size: 11px; }
+.msg-text { font-size: 13px; color: #9ca3af; line-height: 1.4; word-wrap: break-word; }
+
+/* --- СЕТКА ИНВЕНТАРЯ --- */
+#inventoryGrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 12px; align-content: start; width: 100%; }
+.item-card { background-color: #1a1f2b; border: 2px solid #2d3748; border-radius: 8px; padding: 10px; cursor: pointer; display: flex; flex-direction: column; align-items: center; text-align: center; transition: 0.2s; }
+.item-card:hover { background-color: #232a3b; transform: translateY(-2px); }
+.item-card.selected { border-color: #4ade80; background-color: rgba(74, 222, 128, 0.1); box-shadow: 0 0 10px rgba(74, 222, 128, 0.2); }
+.item-img { width: 60px; height: 60px; object-fit: contain; margin-bottom: 8px; }
+.item-name { font-size: 11px; font-weight: 700; color: #fff; margin-bottom: 4px; line-height: 1.2; }
+.item-rarity { font-size: 9px; font-weight: 800; text-transform: uppercase; }
+
+/* Цвета редкостей */
+.godly { color: #ff4d4d; text-shadow: 0 0 5px rgba(255, 77, 77, 0.5); }
+.ancient { color: #a855f7; text-shadow: 0 0 5px rgba(168, 85, 247, 0.5); }
+.unique { color: #fbbf24; text-shadow: 0 0 5px rgba(251, 191, 36, 0.5); }
+.chroma { color: #22d3ee; text-shadow: 0 0 5px rgba(34, 211, 238, 0.5); }
+.pet { color: #4ade80; text-shadow: 0 0 5px rgba(74, 222, 128, 0.5); }
+.common { color: #9ca3af; }
+.uncommon { color: #4ade80; }
+
+/* --- НОВЫЙ ДИЗАЙН МАТЧА --- */
+.match-row { display: flex; align-items: center; justify-content: space-between; background-color: #131722; border: 1px solid #1f2636; border-radius: 12px; padding: 12px 20px; margin-bottom: 10px; width: 100%; }
+.match-left { display: flex; align-items: center; gap: 20px; }
+.match-coins { display: flex; align-items: center; gap: 10px; background-color: #0b0e14; padding: 8px 12px; border-radius: 8px; }
+.match-vs { font-size: 12px; font-weight: 800; color: #6b7280; }
+.match-creator { display: flex; align-items: center; font-weight: 700; color: #fff; }
+.match-center { flex: 1; display: flex; justify-content: center; }
+.match-skin-box { background: linear-gradient(180deg, #2d1b4e 0%, #1a1f2b 100%); border: 1px solid #5b21b6; border-radius: 10px; width: 60px; height: 60px; display: flex; justify-content: center; align-items: center; }
+.match-skin-box img { width: 45px; height: 45px; object-fit: contain; }
+.match-right { display: flex; align-items: center; gap: 20px; }
+.match-price { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; }
+.btn-join { background-color: #4ade80; color: #0b0e14; font-weight: 800; font-size: 14px; padding: 10px 24px; border: none; border-radius: 8px; cursor: pointer; transition: 0.2s; }
+.btn-join:hover { background-color: #22c55e; }
+.btn-cancel { background-color: #ef4444; color: #fff; font-weight: 800; font-size: 14px; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer; transition: 0.2s; }
+.btn-cancel:hover { background-color: #dc2626; }
+
+/* --- УВЕДОМЛЕНИЯ ОБ ОШИБКАХ --- */
+.custom-alert { position: fixed; top: 80px; left: 50%; transform: translateX(-50%) translateY(-20px); background-color: rgba(239, 68, 68, 0.1); border: 2px solid #ef4444; color: #ef4444; padding: 15px 30px; border-radius: 8px; font-weight: 800; font-size: 16px; box-shadow: 0 10px 25px rgba(239, 68, 68, 0.2); z-index: 9999; opacity: 0; transition: all 0.3s ease; pointer-events: none; }
+.custom-alert.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* --- ОКНО ВХОДА --- */
+.auth-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: #0b0e14; display: flex; justify-content: center; align-items: center; z-index: 5000; transition: opacity 0.3s ease; }
+.auth-box { background-color: #131722; padding: 40px; border-radius: 16px; border: 1px solid #1f2636; width: 350px; display: flex; flex-direction: column; text-align: center; box-shadow: 0 10px 40px rgba(0,0,0,0.8); }
+.auth-box h2 { margin-bottom: 5px; font-weight: 900; }
+.auth-box input { background-color: #0b0e14; border: 1px solid #1f2636; padding: 14px; border-radius: 8px; color: #fff; font-size: 14px; margin-bottom: 12px; outline: none; font-family: 'Outfit', sans-serif; }
+.auth-box input:focus { border-color: #4ade80; }
+.auth-box button { background-color: #4ade80; color: #0b0e14; font-weight: 900; font-size: 16px; padding: 14px; border: none; border-radius: 8px; cursor: pointer; margin-top: 10px; transition: 0.2s; }
+.auth-box button:hover { background-color: #22c55e; }
+
+/* --- АНИМАЦИЯ МОНЕТКИ --- */
+.anim-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px); display: flex; justify-content: center; align-items: center; z-index: 2000; transition: opacity 0.5s ease; }
+.anim-overlay.fade-out { opacity: 0; }
+.coin-flip-wrapper { display: flex; flex-direction: column; align-items: center; gap: 40px; }
+.coin-anim { width: 150px; height: 150px; border-radius: 50%; background: radial-gradient(circle at 30% 30%, #fbbf24, #b45309); box-shadow: 0 0 40px rgba(251, 191, 36, 0.5), inset 0 -10px 20px rgba(0,0,0,0.5); display: flex; justify-content: center; align-items: center; font-size: 80px; font-weight: 900; color: #fff; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); transition: transform 0.1s ease; border: 4px solid #fcd34d; }
+.result-message { font-size: 42px; font-weight: 900; color: #fff; opacity: 0; transform: translateY(20px); transition: all 0.5s ease; text-align: center; }

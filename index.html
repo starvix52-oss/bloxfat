@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" class=""><head><script>window.livecodes = window.livecodes || {};</script><title>Untitled Project (fork)</title><meta name="title" content="Untitled Project (fork)"><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="stylesheet" href="./style.css"><script src="https://cdn.jsdelivr.net/npm/es-module-shims@1.10.0/dist/es-module-shims.js" async=""></script><script type="importmap">{
+  "imports": {}
+}</script></head><body><script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+
+
+
+  <meta charset="UTF-8">
+  <title>Bloxluck Clone</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&amp;display=swap" rel="stylesheet">
+
+
+
+  <header class="topbar">
+    <div class="logo">
+      <img src="https://chat-sc-cdn.deepseek.com/2026/11/01/c4e4d9a7-9e5a-4f3b-8d2a-7f8e9d1a2b3c.png" class="logo-img" alt="logo"> 
+      <span class="logo-text">BLOX<span style="color:#4ade80">LUCK</span></span>
+    </div>
+    
+    <div class="topbar-center">
+      <div class="game-selector">
+        <span class="icon">🎲</span> COINFLIP <span class="arrow">▼</span>
+      </div>
+      <div class="icons">
+        <span class="icon">🏆</span>
+        <span class="icon">👥</span>
+        <span class="icon">ℹ️</span>
+        <span class="icon">🛡️</span>
+        <span class="icon">💬</span>
+      </div>
+    </div>
+
+    <div class="topbar-right">
+      <div class="balance-pill">
+        <span class="coin-icon">🪙</span> 0
+      </div>
+      <div class="gift-btn">🎁</div>
+      <div class="user-profile">
+        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=StellarAesthete" alt="avatar" class="avatar-img">
+        <span class="username">StellarAesthete</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-layout">
+    <div class="game-area">
+      <div class="game-header">
+        <button class="btn-create" id="openModalBtn">CREATE</button>
+        
+        <div class="filters">
+          <div class="filter active">
+            <div class="coin-3d coin-blue"><span>T</span></div> 50
+          </div>
+          <div class="filter">
+            <div class="coin-3d coin-red"><span>H</span></div> 50
+          </div>
+        </div>
+        
+        <div class="my-matches">⚔️ MY MATCHES</div>
+      </div>
+      
+      <div class="match-panel" id="matchesContainer"></div>
+    </div>
+
+    <aside class="sidebar">
+      <div class="chat-header">
+        <span>💬 Chat</span>
+        <div class="chat-controls">
+          <span class="online-dot">0</span>
+          <span class="arrow">▶</span>
+        </div>
+      </div>
+      <div class="chat-body" id="chatBody"></div>
+      <div class="chat-input-area">
+        <input type="text" id="chatInput" placeholder="Type a message...">
+        <button class="chat-send" id="chatSendBtn">➤</button>
+      </div>
+    </aside>
+  </main>
+
+  <div class="modal-overlay" id="createModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Select Items</h2>
+        <button class="close-btn" id="closeModalBtn">×</button>
+      </div>
+      
+      <div class="modal-body" id="inventoryGrid"></div>
+
+      <div class="modal-footer">
+        <div class="selected-info">
+          Selected: <span style="color: #fff; font-weight: 800; margin-left: 5px;" id="selectedCount">0</span>
+        </div>
+        <div class="modal-actions">
+          <div class="coin-3d coin-red small" id="btnSelectH"><span>H</span></div>
+          <div class="coin-3d coin-blue small" id="btnSelectT"><span>T</span></div>
+          <button class="btn-modal-create" id="confirmCreateBtn">CREATE</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ОКНО ВХОДА -->
+  <div class="auth-overlay" id="authModal">
+    <div class="auth-box">
+      <h2>Welcome to BLOXLUCK</h2>
+      <p style="color: #6b7280; margin-bottom: 20px;">Введите ник и пароль для входа</p>
+      
+      <input type="text" id="authUsername" placeholder="Username" maxlength="15">
+      <input type="password" id="authPassword" placeholder="Password (min 6 chars)" maxlength="20">
+      
+      <div id="authError" style="color: #ef4444; font-size: 12px; margin-bottom: 15px; font-weight: bold; display: none;">Ошибка</div>
+      
+      <button id="authLoginBtn">LOGIN</button>
+    </div>
+  </div>
+
+
+<script src="./script.js"></script></body></html>
